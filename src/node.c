@@ -16,6 +16,14 @@ Node* createNode(int d, int h, State *s, Node *p) {
     newNode->s = s;
     newNode->parent = p;
   }
-
   return newNode;
+}
+
+
+// return the cost of a Node
+int nodeCost(Node* const n) {
+  if (n != NULL) {
+    return n->d_cost + n->h_cost;
+  }
+  else return 0;
 }
