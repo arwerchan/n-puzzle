@@ -1,2 +1,3 @@
 build/
+debug/
 CMakeLists.txt.bak
