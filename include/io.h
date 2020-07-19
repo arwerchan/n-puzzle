@@ -15,7 +15,7 @@ void startMsg(void);
 void printInstructions(void);
 
 // fill the initial puzzle state from the input from user
-void fillState(State *s);
+void fillState(State *state);
 
 // print the states board to stdout
 void printState(char const board[3][3]);

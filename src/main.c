@@ -22,6 +22,6 @@ int main(void) {
   if (initial_state) {
     fillState(initial_state);
   }
-  
+
   return EXIT_SUCCESS;
 }

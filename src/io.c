@@ -45,7 +45,6 @@ void printInstructions(void){
 
 
 void fillState(State* s){
-  int n = 1;
   int i, j, k;
   char usedVals[9] = { 0 }; // array of flag chars to keep track of input values
   int buffer;

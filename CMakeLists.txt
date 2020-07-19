@@ -1,22 +1,16 @@
 cmake_minimum_required(VERSION 3.13)
 
-project(8-Puzzle)
+project(puzzle)
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
-include_directories(${CMAKE_SOURCE_DIR}/src)
-include_directories(${CMAKE_SOURCE_DIR}/test)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-add_compile_options(-Wall -g)
-
-add_executable(${PROJECT_NAME} src/main.c
-                               src/io.c
-                               include/io.h
-                               include/state.h)
-
-# enable testing and create test cases
 enable_testing()
-# test functions related to State
-add_executable(${PROJECT_NAME}_Test_State test/test1.c
-                                          src/state.c
-                                          include/state.h)                             
-add_test("State_Compare_fn" ${PROJECT_NAME}_Test_State)
+
+if ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
+  set (warnings "-Wall -g")
+endif()
+
+add_subdirectory(src)
+add_subdirectory(test)
