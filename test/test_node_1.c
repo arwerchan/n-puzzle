@@ -1,7 +1,6 @@
 /*
- * File: test_node_1.c
- * Author: Andrew Werchan
- * Function: Test the nodeCost function
+ * File:    test_node_1.c
+ * Author:  Andrew Werchan (arwerchan@gmail.com)
  */
 #include<stdbool.h>
 #include<stdio.h>
@@ -16,7 +15,6 @@
 #endif
 
 bool testCost() {
-  Node *n_1 = NULL;
   int test_val;
   test_val = 0;
 
@@ -25,8 +23,9 @@ bool testCost() {
     return false;
   }
 
+  Node *n_1 = NULL;
   n_1 = createNode(0, 0, NULL, NULL);
-
+  test_val = nodeCost(n_1);
   if (test_val != 0) {
     return false;
   }

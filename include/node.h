@@ -1,7 +1,6 @@
 /*
- * File: node.h
- * Author: Andrew Werchan
- * Function: Definitions of all functions related to graph Node structs
+ * File:    node.h
+ * Author:  Andrew Werchan (arwerchan@gmail.com)
  */
 #ifndef NODE_H
 #define NODE_H
@@ -13,7 +12,7 @@
 typedef struct Node {
   int d_cost;
   int h_cost;
-  State* s;
+  State* state;
   struct Node* parent;
 } Node;
 

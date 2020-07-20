@@ -1,7 +1,6 @@
 /*
- * File: io.h
- * Author: Andrew Werchan
- * Function: definitions for all i/o related functions needed
+ * File:    io.h
+ * Author:  Andrew Werchan
  */
 #ifndef IO_H
 #define IO_H

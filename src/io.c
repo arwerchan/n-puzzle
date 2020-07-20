@@ -1,11 +1,11 @@
 /*
- * File: io.c
- * Author: Andrew Werchan
- * Function:
+ * File:    io.c
+ * Author:  Andrew Werchan (arwerchan@gmail.com)
  */
 
 #include "../include/io.h"
 
+// print ascii art
 void startMsg(void){
   printf("\n\
    @@@@@@              @@@@@@@   @@@  @@@  @@@@@@@@  @@@@@@@@  @@@       @@@@@@@@\n\
@@ -32,6 +32,7 @@ void startMsg(void){
   \t      :: : :     : :  :   : :: : :     :      : :: ::    :   : : \n\n");
 }
 
+// print program instructions to the user. 
 void printInstructions(void){
   printf("\n\
   *----------------------------------------------------------------------------------------*\n\
@@ -43,7 +44,7 @@ void printInstructions(void){
 }
 
 
-
+// Have the user fill the initial start puzzle state.
 void fillState(State* s){
   int i, j, k;
   char usedVals[9] = { 0 }; // array of flag chars to keep track of input values
@@ -88,7 +89,7 @@ void fillState(State* s){
   }
 }
 
-
+// print the puzzle state to the console
 void printState(char const board[3][3]) {
   int i, j;
   for (i=0; i<3; i++) {

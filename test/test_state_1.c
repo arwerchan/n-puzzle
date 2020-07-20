@@ -1,7 +1,6 @@
 /*
- * File: test1.c
- * Author: Andrew Werchan
- * Function: Will test the compareStates function. Success will re
+ * File:    test_state_1.c
+ * Author:  Andrew Werchan (arwerchan@gmail.com)
  */
 #include<stdbool.h>
 

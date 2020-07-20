@@ -1,11 +1,11 @@
 /*
- * File: node.c
- * Author: Andrew Werchan
- * Function: Implementations of all functions operating on Node stucts
+ * File:    node.c
+ * Author:  Andrew Werchan (arwerchan@gmail.com
  */
 #include "../include/node.h"
 
-// Create a new Node.
+// Create a new Node. Will set the nodes depth equal to d, its hueristic cost
+// to h, its state to s, and its parent to p.
 Node* createNode(int d, int h, State *s, Node *p) {
   Node* newNode = NULL;
   newNode = (Node*)malloc(sizeof(Node));
@@ -13,7 +13,7 @@ Node* createNode(int d, int h, State *s, Node *p) {
   if (newNode != NULL) {
     newNode->d_cost = d;
     newNode->h_cost = h;
-    newNode->s = s;
+    newNode->state = s;
     newNode->parent = p;
   }
   return newNode;

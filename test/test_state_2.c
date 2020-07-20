@@ -1,7 +1,6 @@
 /*
- * File: test1.c
- * Author: Andrew Werchan
- * Function: Will test the compareStates function. Success will re
+ * File:    test_state_2.c
+ * Author:  Andrew Werchan (arwerchan@gmail.com)
  */
 #include<stdbool.h>
 
@@ -29,29 +28,34 @@ bool testMove() {
   testState = createPuzzleState(&s, UP);
   // if blank is not where expected or returned state is null - test fails
   if (testState == NULL || testState->board[0][1] != ' ') {
+    free(testState);
     return false;
   }
   
   testState = createPuzzleState(&s, DOWN);
   if (testState == NULL || testState->board[2][1] != ' ') {
+    free(testState);
     return false;
   }
 
   testState = createPuzzleState(&s, LEFT);
   if (testState == NULL || testState->board[1][0] != ' ') {
+    free(testState);
     return false;
   }
 
   testState = createPuzzleState(&s, RIGHT);
   if (testState == NULL || testState->board[1][2] != ' ') {
+    free(testState);
     return false;
   }
   
   testState = createPuzzleState(&s, -1);
   if (testState != NULL) {
+    free(testState);
     return false;
   }
-
+  free(testState);
   return true;
 }
 

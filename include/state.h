@@ -1,8 +1,6 @@
 /*
- * File: state.h
- * Author: Andrew Werchan
- * Function: Defines the state and functions that work on it. The state is used
- *           to represent the puzzle state.
+ * File:    state.h
+ * Author:  Andrew Werchan (arwerchan@gmail.com)
  */
 #ifndef STATE_H
 #define STATE_H

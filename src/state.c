@@ -1,7 +1,6 @@
 /*
- * file: state.c
- * Author: Andrew Werchan
- * Function: The state will function as the puzzle state while solving.
+ * file:    state.c
+ * Author:  Andrew Werchan (arwerchan@gmail.com)
  */
 #include "../include/state.h"
 
@@ -105,13 +104,18 @@ State* createPuzzleState(State const *s, Move m) {
 }
 
 
+// calculate and return the manhattan distance which will be the sum of the 
+// difference of the out of place tiles positions.
 int calculateManhattan(State const *s, State const *g) {
   int i, j, ii, jj;
   int delta_x, delta_y;
   int manhattanDistance;
-
+  
+  // used to hold the sum of difference
   manhattanDistance = 0;
 
+  // for each tile in state s its equal will be found in the goal state g, the
+  // difference in their location is added to the sum.
   for (i=0; i<3; i++) {
     for (j=0; j<3; j++) {
       // calculate the difference of the tiles' position with respect to the

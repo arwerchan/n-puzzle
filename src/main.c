@@ -1,7 +1,6 @@
 /*
- * File: main.c
- * Author: Andrew Werchan
- * Function: main function entry.
+ * File:    main.c
+ * Author:  Andrew Werchan (arwerchan@gmail.com)
  */
 
 #include<stdlib.h>
