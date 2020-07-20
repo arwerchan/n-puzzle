@@ -21,4 +21,7 @@ void pushNode(List** list, Node* node);
 // check if a Nodes state already exists in a list. Returns true if it exists
 bool nodeInList (List** list, Node* node);
 
+// explore Node node and add all valid child nodes to the open list.
+void exploreNode(List** open_list, Node* node, State* const goal);
+
 #endif

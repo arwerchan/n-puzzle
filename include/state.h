@@ -24,11 +24,13 @@ typedef enum {
 // compare two states boards. If they match return true
 bool compareStates(State const *state_1, State const *state_2);
 
-// Create the initial state, will be the goal state
-void fillGoalState(State *state);
+// Create the initial state from state_1, will be the goal state
+void fillGoalState(State *state_1);
 
-State* createPuzzleState(State const *state, Move);
+// Create new state from state_p and Move, If valid will return new State ptr.
+State* createPuzzleState(State const *state_p, Move);
 
-int calculateManhattan(State const *state, State const *goalState);
+// get manhattan hueristic disdance of State state_1
+int calculateManhattan(State const *state_1, State const *goalState);
 
 #endif  

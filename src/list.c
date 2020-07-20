@@ -5,7 +5,7 @@
 #include "../include/list.h"
 
 
-/* Return the list tail, which is the highest priority Node in the list. if the
+/* Return the list tail, which is the highest priority Node in the list. If the
  * list is empty then returns a NULL pointer. */
 Node* popNode(List **list) {
   if (list == NULL) {
@@ -82,4 +82,73 @@ bool nodeInList(List** list, Node* node) {
     }
   }
   return false;
+}
+
+// Explore a node and add discovered nodes to the priority list
+void exploreNode(List** list, Node* node, State* const goal) {
+  
+  State* new_state = NULL;
+  int h_val, d_val;
+  new_state = createPuzzleState(node->state, UP); // try move UP
+  if (new_state != NULL) {
+    // create a new Node to hold the state
+    Node* new_node = NULL;
+    h_val = calculateManhattan(new_state, goal);
+    d_val = node->h_cost + 1; // this nodes depth is +1 of parent depth
+    new_node = createNode(d_val, h_val, new_state, node);
+    if (nodeInList(list, new_node) == false) {
+      pushNode(list, new_node);
+    } 
+    else {
+      free(new_state);  // if node already in openlist free it and state
+      free(new_node);
+    }
+  }
+
+  new_state = createPuzzleState(node->state, DOWN); // try move DOWN
+  if (new_state != NULL) {
+    Node* new_node = NULL;
+    h_val = calculateManhattan(new_state, goal);
+    d_val = node->d_cost + 1;
+    new_node = createNode(d_val, h_val, new_state, node);
+    if (nodeInList(list, new_node) == false) {
+      pushNode(list, new_node);
+    }
+    else {
+      free(new_state);
+      free(new_node);
+    }
+  }
+
+  new_state = createPuzzleState(node->state, LEFT);
+  if (new_state != NULL) {
+    Node* new_node = NULL;
+    h_val = calculateManhattan(new_state, goal);
+    d_val = node->d_cost + 1;
+    new_node = createNode(d_val, h_val, new_state, node);
+    if (nodeInList(list, new_node) == false) {
+      pushNode(list, new_node);
+    }
+    else {
+      free(new_state);
+      free(new_node);
+    }
+  }
+
+  new_state = createPuzzleState(node->state, RIGHT);
+  if (new_state != NULL) {
+    Node* new_node = NULL;
+    h_val = calculateManhattan(new_state, goal);
+    d_val = node->d_cost + 1;
+    new_node = createNode(d_val, h_val, new_state, node);
+    if (nodeInList(list, new_node) == false) {
+      pushNode(list, new_node);
+    }
+    else {
+      free(new_state);
+      free(new_node);
+    }
+  }
+
+  return;
 }
