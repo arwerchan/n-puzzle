@@ -1,6 +1,7 @@
 /*
  * File:    io.c
  * Author:  Andrew Werchan (arwerchan@gmail.com)
+ * Prologue:
  */
 
 #include "../include/io.h"
@@ -65,6 +66,8 @@ void fillState(State* s){
       printf("Enter value for tile number %d . \n", k);
       scanf("%i", &buffer);
 
+      // loop thorugh and fill the puzzle state. Repeat entries or entries that
+      // are not between 0 and 8 inclusive will be rejected.
       if (buffer >= 0 && buffer <9){
         if (!usedVals[buffer]) {
           // convert input to ascii char and insert into board
@@ -83,6 +86,7 @@ void fillState(State* s){
         j--;
         k--;
       }
+      // print the puzzle state the user selected to solve
       printf("Puzzle state to solve is:\n\n");
       printState(s->board);
     }

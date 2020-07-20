@@ -1,6 +1,7 @@
 /*
  * File:    node.h
  * Author:  Andrew Werchan (arwerchan@gmail.com)
+ * Prologue:
  */
 #ifndef NODE_H
 #define NODE_H
@@ -9,10 +10,13 @@
 
 #include "state.h"
 
+// Node will be used for graph vertecies. Each node will have a corresponding
+// puzzle state, a depth, a hueristic cost and a parent Node, which it is a
+// successor of. 
 typedef struct Node {
-  int d_cost;
-  int h_cost;
-  State* state;
+  int d_cost; // depth
+  int h_cost; // hueristic
+  State* state; 
   struct Node* parent;
 } Node;
 

@@ -1,6 +1,7 @@
 /*
  * File:    test_state_2.c
  * Author:  Andrew Werchan (arwerchan@gmail.com)
+ * Prologue:
  */
 #include<stdbool.h>
 

@@ -1,6 +1,7 @@
 /*
  * File:    list.c
  * Author:  Andrew Werchan (arwerchan@gmail.com)
+ * Prologue:
  */
 #include "../include/list.h"
 
@@ -8,9 +9,12 @@
 /* Return the list tail, which is the highest priority Node in the list. If the
  * list is empty then returns a NULL pointer. */
 Node* popNode(List **list) {
+  // if list is empty retrun NULL pointer
   if (list == NULL) {
     return NULL;
   } 
+  // if the list tail is NULL return a NULL pointer. Check here in case LIST
+  // was NULL which would cause a NULL access exception
   else if ((*list)->tail == NULL) {
     return NULL;
   } 
@@ -29,27 +33,31 @@ void pushNode(List** list, Node* node){
   // if the list is empty, insert node at the tail
   if (list != NULL && (*list)->tail == NULL) {
     (*list)->tail = node;
+    node->parent = NULL;
     return;
-  } else {
-    return;
-  }
+  } 
   
-  int n_cost = 0;
+  // get the cost f(n) of the node to push to list
+  int n_cost = 0; 
   n_cost = nodeCost(node);
   
   // if current priority is higher (lower cost) than the current list tail then
   // insert the node as the new tail
   if (n_cost <= nodeCost((*list)->tail)) {
-    (*list)->tail->parent = node;
+    node->parent = (*list)->tail;
     (*list)->tail = node;
+    return;
   }
  
   // starting with the tail begin iterating though the list to determine where
-  // the new node should be inserted based on its priority. 
+  // the new node should be inserted based on its priority. If the  
   Node* iterateNode = (*list)->tail;
-  while ((*list)->tail != NULL && n_cost > nodeCost((iterateNode->parent))) {
+  while (iterateNode->parent != NULL && n_cost > nodeCost((iterateNode->parent))) {
+    // advance to next node in the list
     iterateNode = iterateNode->parent;
   }
+  // insert node and set its parent to the iterate nodes parent and the iterate
+  // nodes parent to the node.
   node->parent = iterateNode->parent;
   iterateNode->parent = node;
 
@@ -75,9 +83,11 @@ bool nodeInList(List** list, Node* node) {
   // true, or if no match exists will return false.
   Node* iterateNode = (*list)->tail;
   while (iterateNode != NULL) {
+    // if the state from node is the same as one in the list, than return true
     if (compareStates(node->state, iterateNode->state)){
       return true;
     } else {
+      // go to next node in list
       iterateNode = iterateNode->parent;
     }
   }
@@ -89,62 +99,97 @@ void exploreNode(List** list, Node* node, State* const goal) {
   
   State* new_state = NULL;
   int h_val, d_val;
-  new_state = createPuzzleState(node->state, UP); // try move UP
+  // try move UP
+  new_state = createPuzzleState(node->state, UP); 
   if (new_state != NULL) {
-    // create a new Node to hold the state
+    // move was valid, create a new Node to hold the state
     Node* new_node = NULL;
+    // calculate this states manhattan distance
     h_val = calculateManhattan(new_state, goal);
-    d_val = node->h_cost + 1; // this nodes depth is +1 of parent depth
+    // this nodes depth is its parents depth + 1
+    d_val = node->h_cost + 1; 
+    // create a new node with new_state and cost of h_val+d_val as a child
+    // of node (node will be parent of new_node).
     new_node = createNode(d_val, h_val, new_state, node);
+    // if node is not in the open list, push it in, else free it and continue
+    // with other moves.
     if (nodeInList(list, new_node) == false) {
       pushNode(list, new_node);
     } 
     else {
-      free(new_state);  // if node already in openlist free it and state
+      // free allocated memory if node is not added to open list
+      free(new_state); 
       free(new_node);
     }
   }
 
+  // try move DOWN
   new_state = createPuzzleState(node->state, DOWN); // try move DOWN
   if (new_state != NULL) {
+    // move was valid, create a new Node to hold the state
     Node* new_node = NULL;
+    // calculate this nodes manhattan distance
     h_val = calculateManhattan(new_state, goal);
+    // thie nodes depth is its parents depth + 1
     d_val = node->d_cost + 1;
+    // create a new node with new_state and cost of h_val+d_val as a child
+    // of node (node will be parent of new_node)
     new_node = createNode(d_val, h_val, new_state, node);
+    // if node is not in the open list, push it in, else free it and continue
+    // with other moves
     if (nodeInList(list, new_node) == false) {
       pushNode(list, new_node);
     }
     else {
+      // free allocated memory if node is not added to open list
       free(new_state);
       free(new_node);
     }
   }
 
+  // try move LEFT
   new_state = createPuzzleState(node->state, LEFT);
   if (new_state != NULL) {
+    // move was valid, create a new Node to hold the state
     Node* new_node = NULL;
+    // calcualte this nodes manhattan distance
     h_val = calculateManhattan(new_state, goal);
+    // this nodes depth is its parents depth + 1
     d_val = node->d_cost + 1;
+    // create a new node with new_state and cost of h_val+d_val as a child 
+    // of node (node will be parent of new_node)
     new_node = createNode(d_val, h_val, new_state, node);
+    // if node is not in the open list, push it in, else free it and continue
+    // with last possible move
     if (nodeInList(list, new_node) == false) {
       pushNode(list, new_node);
     }
     else {
+      // free allocated memory if node is not added to open list
       free(new_state);
       free(new_node);
     }
   }
 
+  // try last move, RIGHT
   new_state = createPuzzleState(node->state, RIGHT);
   if (new_state != NULL) {
+    // move was valid, create a new Node to hold the state
     Node* new_node = NULL;
+    // calculate thie nodes manhattan distance
     h_val = calculateManhattan(new_state, goal);
+    // this nodes depth is its parents depth + 1
     d_val = node->d_cost + 1;
+    // create a new node with new_state and cost of h_val+d_val as a child
+    // of node (node will be parent of new_node)
     new_node = createNode(d_val, h_val, new_state, node);
+    // if node is ot in the open list, push it in, else free it and return
+    // to caller
     if (nodeInList(list, new_node) == false) {
       pushNode(list, new_node);
     }
     else {
+      // free allocated memory if node is not added to open list
       free(new_state);
       free(new_node);
     }

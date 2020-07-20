@@ -1,6 +1,7 @@
 /*
  * File:    state.h
  * Author:  Andrew Werchan (arwerchan@gmail.com)
+ * Prologue:
  */
 #ifndef STATE_H
 #define STATE_H
@@ -13,10 +14,13 @@
 #include<stdbool.h>
 #include<math.h>
 
+// structure State will hold the current puzzle state, and will contain a 3x3
+// char array holding the piece values.
 typedef struct{
   char board[3][3];
 } State;
 
+// possible puzzle moves for the blank piece. 
 typedef enum {
   UP, DOWN, LEFT, RIGHT
 } Move;

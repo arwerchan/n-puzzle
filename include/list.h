@@ -1,6 +1,7 @@
 /*
  * file:    list.h
  * Author:  Andrew Werchan (arwerchan@gmail.com)
+ * Prologue:
  */
 #ifndef LIST_H
 #define LIST_H

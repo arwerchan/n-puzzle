@@ -1,6 +1,7 @@
 /*
  * file:    state.c
  * Author:  Andrew Werchan (arwerchan@gmail.com)
+ * Prologue:
  */
 #include "../include/state.h"
 
@@ -39,6 +40,10 @@ void fillGoalState(State *s) {
 }
 
 
+// create a puzzle state that is the successor of state s by taking the current
+// state in s and moving the blank either UP, DOWN, LEFT, or RIGHT. If the 
+// blank can be moved that direction while remaining valid (within the puzzle
+// boundaries) then return a pointer to the new state.
 State* createPuzzleState(State const *s, Move m) {
   State *newState = NULL;
   newState = (State*)malloc(sizeof(State));
@@ -47,8 +52,8 @@ State* createPuzzleState(State const *s, Move m) {
   i_pos = 0;
   j_pos = 0;
   
+  // check that new state is not NULL
   if (newState != NULL) {
-
     // copy the board from s into board in newState, and get the x/y position
     // of the blank piece. 
     for (i=0; i<3; i++) {
@@ -61,8 +66,7 @@ State* createPuzzleState(State const *s, Move m) {
       }
     }
   } 
-  else {
-    free(newState);
+  else { 
     return NULL;
   }
 

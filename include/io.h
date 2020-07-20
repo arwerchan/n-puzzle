@@ -1,6 +1,7 @@
 /*
  * File:    io.h
  * Author:  Andrew Werchan
+ * Prologue:
  */
 #ifndef IO_H
 #define IO_H
@@ -16,7 +17,7 @@ void printInstructions(void);
 // fill the initial puzzle state from the input from user
 void fillState(State *state);
 
-// print the states board to stdout
+// print the board to stdout
 void printState(char const board[3][3]);
 
 #endif

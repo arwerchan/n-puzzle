@@ -1,7 +1,7 @@
 /**
- * @author      : Andrew Werchan (arwerchan@gmail.com)
- * @file        : test_list_1
- * @created     : Sunday Jul 19, 2020 17:13:50 MST
+ * Author:  Andrew Werchan (arwerchan@gmail.com)
+ * File:    test_list_1
+ * Prologue:
  */
 #include<stdbool.h>
 

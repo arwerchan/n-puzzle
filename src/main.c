@@ -1,6 +1,7 @@
 /*
  * File:    main.c
  * Author:  Andrew Werchan (arwerchan@gmail.com)
+ * Prologue:
  */
 
 #include<stdlib.h>
@@ -8,9 +9,12 @@
 
 #include "../include/io.h"
 #include "../include/node.h"
+#include "../include/list.h"
 
+// main code entry. Allocate a initial and goal state, print the info and
+// instructional messages then call the A* search solver function.
 int main(void) {
-
+  
   startMsg();
   printInstructions();
 

@@ -1,7 +1,7 @@
 /**
- * @author      : Andrew Werchan (arwerchan@gmail.com)
- * @file        : test_list_3
- * @created     : Sunday Jul 19, 2020 18:38:33 MST
+ * Author:  Andrew Werchan (arwerchan@gmail.com)
+ * File:    test_list_3
+ * Prologue:
  */
 #ifndef TEST_PASSED
 #define TEST_PASSED 0
