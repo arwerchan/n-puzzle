@@ -8,6 +8,7 @@
 #include<stdio.h>
 
 #include "../include/io.h"
+#include "../include/node.h"
 
 int main(void) {
 
