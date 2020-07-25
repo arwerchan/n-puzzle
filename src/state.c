@@ -135,5 +135,6 @@ int calculateManhattan(State const *s, State const *g) {
       }
     }
   }
+  //manhattanDistance = manhattanDistance * 2;
   return manhattanDistance;
 }

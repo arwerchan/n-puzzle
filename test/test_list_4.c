@@ -19,21 +19,6 @@ bool testExplore() {
                         {'4',' ','6'},
                         {'7','5','8'}};
 
-  /*char board_up[3][3] = {{'1',' ','3'}, // state to test, all moves possible
-                         {'4','2','6'}, // h_val is 6
-                         {'7','5','8'}};
-
-  char board_down[3][3] = {{'1','2','3'}, // state to test, all moves possible
-                           {'4','5','6'}, // h_val is 2 
-                           {'7',' ','8'}};
-
-  char board_left[3][3] = {{'1','2','3'}, // state to test, all moves possible
-                           {' ','4','6'}, // h_val is 6
-                           {'7','5','8'}};
-
-  char board_right[3][3] = {{'1','2','3'}, // state to test, all moves possible
-                            {'4','6',' '}, // h_val 4
-                            {'7','5','8'}}; */
   int i, j;
   Node* node_p = NULL;
   node_p = (Node*)malloc(sizeof(Node));
@@ -58,15 +43,17 @@ bool testExplore() {
   }
   
 
-  List *tmp_list = (List*)malloc(sizeof(List));
+  List *tmp_open = (List*)malloc(sizeof(List));
+  List *tmp_closed = (List*)malloc(sizeof(List));
   // call explore node with empty list, expect 4 nodes in list
-  exploreNode(&tmp_list, node_p, &goal_s);
-  Node* iterate_node = tmp_list->tail;
+  exploreNode(&tmp_open, &tmp_closed, node_p, &goal_s);
+  Node* iterate_node = tmp_open->tail;
   for (i=0; i<4; i++) {
     if (iterate_node == NULL) {
       free(state_p);
       free(node_p);
-      free(tmp_list);
+      free(tmp_open);
+      free(tmp_closed);
       return false;
     } 
     else {
@@ -75,7 +62,8 @@ bool testExplore() {
   }
   free(state_p);
   free(node_p);
-  free(tmp_list);
+  free(tmp_open);
+  free(tmp_closed);
   
   return true;
 }

@@ -20,7 +20,7 @@ bool testCost() {
   test_val = 0;
 
   test_val = nodeCost(NULL);
-  if (test_val != 0) {
+  if (test_val == 0) {
     return false;
   }
 

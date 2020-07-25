@@ -95,7 +95,7 @@ bool nodeInList(List** list, Node* node) {
 }
 
 // Explore a node and add discovered nodes to the priority list
-void exploreNode(List** list, Node* node, State* const goal) {
+void exploreNode(List** open, List** closed, Node* node, State* const goal) {
   
   State* new_state = NULL;
   int h_val, d_val;
@@ -107,14 +107,14 @@ void exploreNode(List** list, Node* node, State* const goal) {
     // calculate this states manhattan distance
     h_val = calculateManhattan(new_state, goal);
     // this nodes depth is its parents depth + 1
-    d_val = node->h_cost + 1; 
+    d_val = node->d_cost + 1; 
     // create a new node with new_state and cost of h_val+d_val as a child
     // of node (node will be parent of new_node).
     new_node = createNode(d_val, h_val, new_state, node);
-    // if node is not in the open list, push it in, else free it and continue
-    // with other moves.
-    if (nodeInList(list, new_node) == false) {
-      pushNode(list, new_node);
+    // if node is not in the closed list, push it into the closed list, 
+    // else free it and continue with other moves.
+    if (nodeInList(closed, new_node) == false) {
+      pushNode(open, new_node);
     } 
     else {
       // free allocated memory if node is not added to open list
@@ -135,10 +135,10 @@ void exploreNode(List** list, Node* node, State* const goal) {
     // create a new node with new_state and cost of h_val+d_val as a child
     // of node (node will be parent of new_node)
     new_node = createNode(d_val, h_val, new_state, node);
-    // if node is not in the open list, push it in, else free it and continue
-    // with other moves
-    if (nodeInList(list, new_node) == false) {
-      pushNode(list, new_node);
+    // if node is not in then closed list, push it into the open list, 
+    // else free it and continue with other moves
+    if (nodeInList(closed, new_node) == false) {
+      pushNode(open, new_node);
     }
     else {
       // free allocated memory if node is not added to open list
@@ -159,10 +159,10 @@ void exploreNode(List** list, Node* node, State* const goal) {
     // create a new node with new_state and cost of h_val+d_val as a child 
     // of node (node will be parent of new_node)
     new_node = createNode(d_val, h_val, new_state, node);
-    // if node is not in the open list, push it in, else free it and continue
-    // with last possible move
-    if (nodeInList(list, new_node) == false) {
-      pushNode(list, new_node);
+    // if node is not in the closed list, push it into the open list, 
+    // else free it and continue with last possible move
+    if (nodeInList(closed, new_node) == false) {
+      pushNode(open, new_node);
     }
     else {
       // free allocated memory if node is not added to open list
@@ -183,10 +183,10 @@ void exploreNode(List** list, Node* node, State* const goal) {
     // create a new node with new_state and cost of h_val+d_val as a child
     // of node (node will be parent of new_node)
     new_node = createNode(d_val, h_val, new_state, node);
-    // if node is ot in the open list, push it in, else free it and return
-    // to caller
-    if (nodeInList(list, new_node) == false) {
-      pushNode(list, new_node);
+    // if node is not in the closed list, push it into the open list, 
+    // else free it and return to caller
+    if (nodeInList(closed, new_node) == false) {
+      pushNode(open, new_node);
     }
     else {
       // free allocated memory if node is not added to open list

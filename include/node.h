@@ -6,7 +6,7 @@
 #ifndef NODE_H
 #define NODE_H
 #include<stdlib.h>
-#include<limits.h>
+#include<math.h>
 
 #include "state.h"
 

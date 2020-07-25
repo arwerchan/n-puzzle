@@ -23,6 +23,7 @@ void pushNode(List** list, Node* node);
 bool nodeInList (List** list, Node* node);
 
 // explore Node node and add all valid child nodes to the open list.
-void exploreNode(List** open_list, Node* node, State* const goal);
+void exploreNode(List** open_list, List** closed_list, Node* node,
+                 State* const goal);
 
 #endif

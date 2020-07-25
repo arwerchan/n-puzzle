@@ -28,5 +28,5 @@ int nodeCost(Node* const n) {
   if (n != NULL) {
     return n->d_cost + n->h_cost;
   }
-  else return 0;
+  else return (int)INFINITY;
 }
