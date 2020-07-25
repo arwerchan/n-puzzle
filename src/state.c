@@ -138,3 +138,33 @@ int calculateManhattan(State const *s, State const *g) {
   //manhattanDistance = manhattanDistance * 2;
   return manhattanDistance;
 }
+
+
+// check if the state is solvable to calculating the number of inversions. If
+// the number of inversions is even, the state is solvable.
+bool isSolvable(char const board[][3]) {
+  int i, j, k, inversion_count;
+  inversion_count = 0;
+  k = 0;
+  char inversion_array[9] = {};
+  
+  // copy puzzle state from 2D array to 1D for inversion calculation
+  for (i=0; i<3; i++) {
+    for (j=0; j<3; j++) {
+      inversion_array[k] = board[i][j];
+      k++;
+    }
+  }
+
+  for (i=0; i<9-1; i++) {
+    for (j=i+1; j<9; j++) {
+      if (inversion_array[i] != ' ' &&
+          inversion_array[j] != ' ' &&
+          inversion_array[i] > inversion_array[j]) {
+        inversion_count += 1;
+      }
+    }
+  }
+
+  return (inversion_count % 2 == 0);
+}

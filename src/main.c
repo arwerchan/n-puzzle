@@ -42,9 +42,16 @@ int main(void) {
 
 
   // get user to fill in puzzle state if the state is non NULL
-  if (initial_state) {
+  bool valid_state = false;
+  do {
     fillState(initial_state);
-  }
+    if (isSolvable(initial_state->board) == true) {
+      valid_state = true;
+    } 
+    else {
+      printf("\nPuzzle state is not solvable, please enter again:\n\n");
+    }
+  } while(!valid_state);
 
   aStar(initial_state, goal_state);
 

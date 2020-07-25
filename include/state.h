@@ -37,4 +37,7 @@ State* createPuzzleState(State const *state_p, Move);
 // get manhattan hueristic disdance of State state_1
 int calculateManhattan(State const *state_1, State const *goalState);
 
+// test if the puzzle state is solvable
+bool isSolvable(char const board[][3]);
+
 #endif  

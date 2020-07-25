@@ -8,6 +8,8 @@
 
 void aStar(State *initial, State* goal) {
 
+  clock_t start_time = clock();
+  clock_t runtime = 0;
   // create the open list, nodes to be explored go in here
   List* open_list;
   open_list = (List*)malloc(sizeof(List));
@@ -28,7 +30,10 @@ void aStar(State *initial, State* goal) {
     Node* node_to_explore = popNode(&open_list); 
     // check if node contains solution
     if (compareStates(node_to_explore->state, goal)) {
+      runtime = clock() - start_time;;
       printf("\nSolved!\n");
+      printf("Number of moves: %i\n", node_to_explore->d_cost);
+      printf("Time to solve: %f\n", (float)runtime / CLOCKS_PER_SEC);
       printState(node_to_explore->state->board);
       break;
     }
